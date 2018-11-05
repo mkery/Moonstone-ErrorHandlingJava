@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <!-- Startup and popupMenus -->
+
+    <extension point="org.eclipse.ui.startup">
+        <startup class="moonstone.StartupUtility"/>
+    </extension>
+    <!-- Extending this causes eclipse's hovers to be surpressed. Commented out for now. -->
+
+    <extension
+            point="org.eclipse.jdt.ui.javaEditorTextHovers">
+        <hover
+                class="moonstone.AnnotationHover"
+                id="moonstone.AnnotationHover">
+        </hover>
+    </extension>
+
+    <extension
+            point="org.eclipse.jdt.ui.javaEditorTextHovers">
+        <hover
+                class="moonstone.LangHover"
+                id="moonstone.LangHover">
+        </hover>
+    </extension>
+
+    <!-- Markers -->
+    <extension
+            id="edu.cmu.moonstone.marker"
+            name="marker"
+            point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.textmarker"/>
+        <super type="org.eclipse.core.resources.marker"/>
+        <super type="org.eclipse.jdt.core.problem"/>
+        <super type="org.eclipse.core.resources.problemmarker"/>
+        <persistent
+                value="true">
+        </persistent>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.markerUpdaters">
+        <updater
+                id="edu.cmu.moonstone.MarkerUpdater"
+                class="edu.cmu.moonstone.markers.MarkerUpdater"
+                markerType="edu.cmu.moonstone.marker">
+        </updater>
+    </extension>
+
+
+    <extension
+            id="edu.cmu.moonstone.marker.emptycatch"
+            name="emptycatch"
+            point="org.eclipse.core.resources.markers">
+        <super type="edu.cmu.moonstone.marker"/>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.destructivewrap"
+            name="destructivewrap"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.resourceleak"
+            name="resourceleak"
+            point="org.eclipse.core.resources.markers">
+        <super type="edu.cmu.moonstone.marker"/>
+    </extension>
+
+    <!-- Bad Catch -->
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch"
+            name="emptycatch"
+            point="org.eclipse.core.resources.markers">
+        <super type="edu.cmu.moonstone.marker"/>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.caughtexception"
+            name="caughtexception"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.caughtthrowable"
+            name="caughtthrowable"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.throwsexception"
+            name="throwsexception"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.throwsthrowable"
+            name="throwsthrowable"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.caughterror"
+            name="caughterror"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badcatch.caughtruntime"
+            name="caughtruntime"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badcatch">
+        </super>
+    </extension>
+
+    <!-- Bad throw from try -->
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromtry"
+            name="emptycatch"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromtry.threwexception"
+            name="threwexception"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromtry">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromtry.threwthrowable"
+            name="threwthrowable"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromtry">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromtry.threwerror"
+            name="threwerror"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromtry">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromtry.threwruntime"
+            name="threwruntime"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromtry">
+        </super>
+    </extension>
+
+    <!-- Bad throw from catch -->
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromcatch"
+            name="emptycatch"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromcatch.threwexception"
+            name="threwexception"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromcatch.threwthrowable"
+            name="threwcatchable"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromcatch.threwerror"
+            name="threwerror"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromcatch">
+        </super>
+    </extension>
+    <extension
+            id="edu.cmu.moonstone.marker.badthrowfromcatch.threwruntime"
+            name="threwruntime"
+            point="org.eclipse.core.resources.markers">
+        <super
+                type="edu.cmu.moonstone.marker.badthrowfromcatch">
+        </super>
+    </extension>
+    <!-- Annotations -->
+
+    <extension
+            id="qfannotationspecification"
+            name="QFAnnotation"
+            point="org.eclipse.ui.editors.markerAnnotationSpecification">
+        <specification
+                annotationType="edu.cmu.moonstone.qfannotation"
+                label="QFAnnotation"
+                icon="icon/moonstone.png"
+                overviewRulerPreferenceKey="clruler"
+                overviewRulerPreferenceValue="true"
+                colorPreferenceKey="clcolor"
+                colorPreferenceValue="255, 183, 38"
+                textPreferenceKey="cltext"
+                textPreferenceValue="true"
+                verticalRulerPreferenceKey="clvertical"
+                verticalRulerPreferenceValue="true"
+                textStylePreferenceKey="clstyle"
+                textStylePreferenceValue="SQUIGGLES">
+        </specification>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.annotationTypes">
+        <type
+                markerSeverity="0"
+                markerType="edu.cmu.moonstone.marker"
+                name="edu.cmu.moonstone.qfannotation"
+                super="org.eclipse.ui.workbench.texteditor.info">
+        </type>
+    </extension>
+
+
+    <!-- Different colors of highlight annotation -->
+    <extension
+            id="greyhighlightannotation"
+            name="greyhighlightannotation"
+            point="org.eclipse.ui.editors.markerAnnotationSpecification">
+        <specification
+                annotationType="edu.cmu.moonstone.greyhighlightannotation"
+                label="greyhighlightannotation"
+                icon="icon/ignore.png"
+                overviewRulerPreferenceKey="ghlruler"
+                overviewRulerPreferenceValue="true"
+                colorPreferenceKey="ghlcolor"
+                colorPreferenceValue="212, 212, 212"
+                textPreferenceKey="ghltext"
+                textPreferenceValue="true"
+                verticalRulerPreferenceKey="ghlvertical"
+                verticalRulerPreferenceValue="true"
+                textStylePreferenceKey="ghlstyle"
+                textStylePreferenceValue="BOX"
+                highlightPreferenceKey="ghlHighlighting"
+                highlightPreferenceValue="true">
+        </specification>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.annotationTypes">
+        <type
+                markerSeverity="0"
+                markerType="edu.cmu.moonstone.greyhighlightannotation"
+                name="edu.cmu.moonstone.greyhighlightannotation"
+                super="org.eclipse.ui.workbench.texteditor.info">
+        </type>
+    </extension>
+
+    <extension
+            id="bluehighlightannotation"
+            name="bluehighlightannotation"
+            point="org.eclipse.ui.editors.markerAnnotationSpecification">
+        <specification
+                annotationType="edu.cmu.moonstone.bluehighlightannotation"
+                label="bluehighlightannotation"
+                icon="icon/ignore.png"
+                overviewRulerPreferenceKey="bhlruler"
+                overviewRulerPreferenceValue="true"
+                colorPreferenceKey="bhlcolor"
+                colorPreferenceValue="128, 179, 196"
+                textPreferenceKey="bhltext"
+                textPreferenceValue="true"
+                verticalRulerPreferenceKey="bhlvertical"
+                verticalRulerPreferenceValue="true"
+                textStylePreferenceKey="bhlstyle"
+                textStylePreferenceValue="BOX"
+                highlightPreferenceKey="bhlHighlighting"
+                highlightPreferenceValue="true">
+        </specification>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.annotationTypes">
+        <type
+                markerSeverity="0"
+                markerType="edu.cmu.moonstone.bluehighlightannotation"
+                name="edu.cmu.moonstone.bluehighlightannotation"
+                super="org.eclipse.ui.workbench.texteditor.info">
+        </type>
+    </extension>
+
+    <extension
+            id="redhighlightannotation"
+            name="redhighlightannotation"
+            point="org.eclipse.ui.editors.markerAnnotationSpecification">
+        <specification
+                annotationType="edu.cmu.moonstone.redhighlightannotation"
+                label="redhighlightannotation"
+                icon="icon/ignore.png"
+                overviewRulerPreferenceKey="rhlruler"
+                overviewRulerPreferenceValue="true"
+                colorPreferenceKey="rhlcolor"
+                colorPreferenceValue="251, 206, 177"
+                textPreferenceKey="rhltext"
+                textPreferenceValue="true"
+                verticalRulerPreferenceKey="rhlvertical"
+                verticalRulerPreferenceValue="true"
+                textStylePreferenceKey="rhlstyle"
+                textStylePreferenceValue="BOX"
+                highlightPreferenceKey="rhlHighlighting"
+                highlightPreferenceValue="true">
+        </specification>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.annotationTypes">
+        <type
+                markerSeverity="0"
+                markerType="edu.cmu.moonstone.redhighlightannotation"
+                name="edu.cmu.moonstone.redhighlightannotation"
+                super="org.eclipse.ui.workbench.texteditor.info">
+        </type>
+    </extension>
+    <!-- Processors -->
+    <!--
+    <extension
+          id="Moonstone"
+          name="Moonstone"
+          point="org.eclipse.jdt.ui.javaCompletionProposalComputer">
+       <javaCompletionProposalComputer
+             activate="true"
+             categoryId="org.eclipse.jdt.ui.defaultProposalCategory"
+             class="moonstone.CompletionProposalComputer"
+             needsSortingAfterFiltering="false">
+       </javaCompletionProposalComputer>
+    </extension>
+    -->
+
+    <!--
+    <extension
+       point="org.eclipse.jdt.ui.quickFixProcessors">
+    <quickFixProcessor
+          class="edu.cmu.moonstone.ghostcomment.GhostQuickFixProcessor"
+          id="org.eclipse.jdt.ui.text.correction.QuickFixProcessor"
+          name="GhostQuickFixProcessor">
+       <handledMarkerTypes>
+          <markerType id="moonstone.ghostCommentMarker" />
+          <markerType id="edu.cmu.moonstone.marker.emptycatch" />
+       </handledMarkerTypes>
+    </quickFixProcessor>
+ </extension>
+     -->
+
+
+    <extension
+            point="org.eclipse.ui.views">
+        <category
+                name="Custom Category"
+                id="view">
+        </category>
+        <view
+                name="Exception Handling Recommendations"
+                icon="icon/moonstone.png"
+                category="view"
+                class="edu.cmu.moonstone.view.CustomView"
+                id="moonstone.CustomView">
+        </view>
+    </extension>
+    <extension
+            id="throwsitehighlightannotation"
+            name="throwsitehighlightannotation"
+            point="org.eclipse.ui.editors.markerAnnotationSpecification">
+        <specification
+                annotationType="edu.cmu.moonstone.throwsitehighlightannotation"
+                colorPreferenceKey="tshlcolor"
+                colorPreferenceValue="0, 0, 0"
+                highlightPreferenceKey="tshlHighlighting"
+                highlightPreferenceValue="false"
+                icon="icon/ignore.png"
+                label="throwsitehighlightannotation"
+                overviewRulerPreferenceKey="tshlruler"
+                overviewRulerPreferenceValue="true"
+                textPreferenceKey="tshltext"
+                textPreferenceValue="true"
+                textStylePreferenceKey="tshlstyle"
+                textStylePreferenceValue="UNDERLINE"
+                verticalRulerPreferenceKey="tshlvertical"
+                verticalRulerPreferenceValue="false">
+        </specification>
+    </extension>
+    <extension
+            point="org.eclipse.ui.editors.annotationTypes">
+        <type
+                markerType="edu.cmu.moonstone.throwsitehighlightannotation"
+                name="edu.cmu.moonstone.throwsitehighlightannotation"
+                super="org.eclipse.ui.workbench.texteditor.info">
+        </type>
+    </extension>
+</plugin>
